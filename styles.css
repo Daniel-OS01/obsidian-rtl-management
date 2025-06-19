@@ -1,0 +1,175 @@
+/* Add your plugin styles here */
+
+/*
+  The old global 'body.hebrew-rtl-enabled' has been removed.
+  Styling will now be based on data-attributes or specific classes applied by JavaScript
+  to individual UI containers based on plugin settings.
+*/
+
+/* Basic visual feedback for the EFFECTIVE direction attribute */
+[data-effective-direction="rtl"] {
+  direction: rtl;
+}
+
+[data-effective-direction="ltr"] {
+  direction: ltr;
+}
+
+/* Styling for when the user explicitly set 'auto' and detection is on */
+.auto-detect-direction {
+  /* Example: outline: 1px dashed var(--interactive-accent); */
+  /* This class is added to elements where the user setting is 'auto'. */
+  /* The actual direction is then determined by [data-effective-direction]. */
+}
+
+/* Mode classes can be used for more than just direction if needed */
+.rtl-mode {
+  /* Additional styles for elements in RTL mode, beyond just 'direction: rtl' */
+}
+
+.ltr-mode {
+  /* Additional styles for elements in LTR mode */
+}
+
+
+/* --- Specific Container Styling --- */
+
+/* Editor (CodeMirror) */
+/* .cm-content is the element that typically receives data-effective-direction from the plugin */
+.cm-content[data-effective-direction="rtl"] {
+	& .cm-line {
+    text-align: right;
+  }
+  /* Ensure embeds, callouts, and other block elements also align right if they don't inherit well */
+	& .markdown-embed, & .internal-embed, & .image-embed, & .math-block, & .callout {
+		margin-left: auto; /* For block elements to align right */
+		margin-right: 0;
+	}
+}
+.cm-content[data-effective-direction="ltr"] {
+	& .cm-line { text-align: left; }
+  & .markdown-embed, & .internal-embed, & .image-embed, & .math-block, & .callout {
+		margin-left: 0;
+		margin-right: auto;
+	}
+}
+
+/* File Explorer */
+/* .nav-files-container is a common target */
+.nav-files-container[data-effective-direction="rtl"] {
+	& .nav-file-title-content,
+	& .nav-folder-title-content {
+		text-align: right;
+	}
+  /* If file/folder icons are on the left, this might need flexbox adjustments */
+  & .nav-file-title, & .nav-folder-title {
+    /* Example: display: flex; flex-direction: row-reverse; */
+  }
+}
+
+/* Sidebars (General Leaf Content) */
+/* .workspace-leaf-content can host various views like outline, backlinks, etc. */
+.workspace-leaf-content[data-effective-direction="rtl"] {
+	& ul, & ol { /* For general lists within sidebars */
+		padding-right: 1.5em;
+		padding-left: 0;
+    list-style-position: outside;
+	}
+  & .tree-item-inner { /* For items in outline, etc. */
+    text-align: right;
+  }
+  /* For settings panes or other specific views often in sidebars */
+  & .setting-item-info { text-align: right; }
+  & .setting-item-control input[type="text"],
+  & .setting-item-control textarea { text-align: right; }
+}
+
+/* Search Results */
+/* .search-results-container is a common target */
+.search-results-container[data-effective-direction="rtl"] {
+	& .search-result-file-match, /* Text snippets */
+	& .search-result-file-title { /* Titles of files in search results */
+		text-align: right;
+	}
+}
+
+/* Tag Pane */
+/* .tag-pane-tags is a potential target for the list of tags */
+.tag-pane-tags[data-effective-direction="rtl"] {
+	text-align: right;
+	& .tag-pane-tag {
+		margin-right: 0;
+		margin-left: 0.5em; /* Adjust spacing between tags for RTL */
+	}
+}
+
+/* Canvas Card Content */
+.canvas-card-content[data-effective-direction="rtl"],
+.canvas-card-text[data-effective-direction="rtl"] { /* .canvas-card-text for markdown cards */
+	text-align: right;
+}
+
+/* General UI elements that might need specific RTL adjustments */
+[data-effective-direction="rtl"] .notice-message { /* Notices/Popups */
+  text-align: right;
+}
+[data-effective-direction="rtl"] .prompt-input-container input[type="text"],
+[data-effective-direction="rtl"] .prompt-input-container textarea {
+  text-align: right;
+}
+[data-effective-direction="rtl"] .menu-item-title { /* Context Menus */
+  text-align: right;
+}
+/* Tab titles in sidebars or main workspace. Obsidian might handle this well by default for RTL characters. */
+/* [data-effective-direction="rtl"] .workspace-tab-header-inner-title { */
+/* text-align: right; */
+/* } */
+
+
+/* Original styles from the initial template, commented out as they were too broad
+   or applied globally via a body class. Keep for reference if specific rules are needed.
+*/
+/*
+.app-container {
+  direction: rtl;
+  unicode-bidi: embed;
+}
+
+.markdown-source-view,
+.markdown-preview-view {
+  direction: rtl;
+  unicode-bidi: embed;
+}
+
+.workspace-ribbon,
+.workspace-leaf,
+.workspace-tabs,
+.nav-folder-title,
+.nav-file-title {
+  direction: rtl;
+  unicode-bidi: embed;
+}
+
+.modal,
+.prompt,
+.notice,
+.setting-item,
+.menu,
+.suggestion-item {
+  direction: rtl;
+  unicode-bidi: embed;
+}
+
+.markdown-preview-view h1,
+.markdown-preview-view h2,
+.markdown-preview-view h3,
+.markdown-preview-view h4,
+.markdown-preview-view h5,
+.markdown-preview-view h6 {
+  text-align: right;
+}
+
+.markdown-source-view .cm-line {
+  text-align: right;
+}
+*/

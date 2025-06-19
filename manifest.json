@@ -1,0 +1,10 @@
+{
+	"id": "hebrew-rtl-support",
+	"name": "Intelligent RTL Management",
+	"version": "0.2.0",
+	"minAppVersion": "0.15.0",
+	"description": "Provides advanced Right-to-Left (RTL) text direction management for various UI components in Obsidian, with auto-detection capabilities.",
+	"author": "AI Assistant (Jules)",
+	"authorUrl": "https://example.com",
+	"isDesktopOnly": false
+}
