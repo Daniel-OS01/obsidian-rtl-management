@@ -21,7 +21,7 @@ jobs:
         run: |
           npm install
           npm run build
-
+        working-directory: .
       - name: Create release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
